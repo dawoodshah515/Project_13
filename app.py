@@ -17,6 +17,7 @@ from config import (
     SUPPORTED_CITIES,
     DATABASE_PATH
 )
+import config  # Import entire module to access config.GEMINI_API_KEY
 
 
 # ============================================================================
