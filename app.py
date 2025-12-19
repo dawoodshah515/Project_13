@@ -348,6 +348,21 @@ def main():
     
     # Initialize session state
     init_session_state()
+
+    # Check for API Key (Cloud Deployment Fix)
+    if not config.GEMINI_API_KEY:
+        st.error("⚠️ **Missing Configuration**")
+        st.markdown("""
+        The Gemini API Key is missing.
+        
+        **If you are running on Streamlit Cloud:**
+        1. Go to **Advanced Settings** -> **Secrets**
+        2. Add the following:
+        ```
+        GEMINI_API_KEY = "your-api-key-here"
+        ```
+        """)
+        st.stop()
     
     # Simple header
     st.markdown("""

@@ -4,15 +4,34 @@ Contains API keys, database settings, and medical domain mappings
 """
 
 import os
+import streamlit as st
 from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv()
 
+def get_api_key():
+    """Retrieve API key from environment or streamlit secrets"""
+    # 1. Try environment variable (Local .env)
+    key = os.getenv("GEMINI_API_KEY")
+    if key:
+        return key
+        
+    # 2. Try Streamlit Secrets (Cloud)
+    try:
+        if "GEMINI_API_KEY" in st.secrets:
+            return st.secrets["GEMINI_API_KEY"]
+    except FileNotFoundError:
+        pass
+    except Exception:
+        pass
+        
+    return None
+
 # ============================================================================
 # API CONFIGURATION
 # ============================================================================
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+GEMINI_API_KEY = get_api_key()
 GEMINI_MODEL = "models/gemini-2.5-flash"  # Latest flash model
 
 # ============================================================================
