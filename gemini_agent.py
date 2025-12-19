@@ -241,6 +241,9 @@ IMPORTANT:
             response = self.chat.send_message(prompt)
             return response.text
         except Exception as e:
+            # DEBUG: Show error on UI for Cloud debugging
+            import streamlit as st
+            st.error(f"⚠️ Gemini Cloud Error: {str(e)}")
             print(f"Error generating AI response: {e}")
             return self._generate_fallback_response(retrieved_doctors, intent_info)
     
