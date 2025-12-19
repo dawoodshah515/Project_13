@@ -26,7 +26,8 @@ def get_api_key():
     except Exception:
         pass
         
-    return None
+    # 3. Fallback (Direct Key - For easiest deployment)
+    return "AIzaSyC0kjy25NW1SeydAXhUErRmxe8a1l-n1VY"
 
 # ============================================================================
 # API CONFIGURATION
